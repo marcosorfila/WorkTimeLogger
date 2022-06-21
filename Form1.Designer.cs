@@ -68,7 +68,7 @@
             this.numFirstRow.Size = new System.Drawing.Size(122, 31);
             this.numFirstRow.TabIndex = 2;
             this.numFirstRow.Value = new decimal(new int[] {
-            3598,
+            3634,
             0,
             0,
             0});
@@ -156,7 +156,7 @@
             this.numLastRow.Size = new System.Drawing.Size(122, 31);
             this.numLastRow.TabIndex = 12;
             this.numLastRow.Value = new decimal(new int[] {
-            3632,
+            3641,
             0,
             0,
             0});

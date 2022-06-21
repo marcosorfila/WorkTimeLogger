@@ -21,7 +21,6 @@ namespace WorkTimeLogger
         {
             try
             {
-                string output = String.Empty;
                 List<Tuple<int, int>> rowGroups = new List<Tuple<int, int>>();
 
                 rowGroups.Add(new Tuple<int, int>(Convert.ToInt32(numFirstRow.Value), Convert.ToInt32(numLastRow.Value)));
@@ -38,8 +37,9 @@ namespace WorkTimeLogger
                 //rowGroups.Add(new Tuple<int, int>(510, 609));
                 //output = TextGenerator.GetTextGroupedByJiraWithoutMeetingsAndDates(entries);
 
-                output = TextGenerator.GetTextGroupedByDate(entries);
-                output = TextGenerator.GetTextGroupedByJira(entries);
+                string output1 = TextGenerator.GetTextGroupedByDate(entries);
+                //string output2 = TextGenerator.GetTextGroupedByJira(entries);
+                string output3 = TextGenerator.GetCsvTextToImportUsingJiraAssistant(entries);
             }
             catch (Exception ex)
             {

@@ -53,7 +53,7 @@ namespace WorkTimeLogger
                         // Extract the data from the cells
                         if (worksheet.Cells[row, dateColumn].Value != null && Double.TryParse(worksheet.Cells[row, dateColumn].Value.ToString(), out dateNumber))
                         {
-                            date = DateTime.FromOADate(dateNumber).Date.AddHours(12); // The time is 12 PM so there's no date confusion due to the timezone
+                            date = DateTime.FromOADate(dateNumber).Date.AddHours(13); // The time is 1 PM so there's no date confusion due to the timezone
                         }
                         else
                         {
