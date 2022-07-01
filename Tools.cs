@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Harvest.Api;
+
 
 namespace WorkTimeLogger
 {
@@ -219,6 +221,91 @@ namespace WorkTimeLogger
                 result += mod - value % mod;
             }
             return result;
+        }
+
+        public static async void SendTimesToHarvest()
+        {
+            // Backward compatibility with TLS 1.2 and previous versions
+            System.Net.ServicePointManager.SecurityProtocol |= System.Net.SecurityProtocolType.Tls12;
+
+            Task<string> task1 = Tools.SendTimesToHarvest2();
+            string text1 = await task1;
+        }
+
+
+        public static async System.Threading.Tasks.Task<string> SendTimesToHarvest2()
+        {
+            ////HarvestRestClient client = new HarvestRestClient("meritus", "morfila@mbsol.net", "M1a2r3c4");
+            //HarvestRestClient client = new HarvestRestClient("meritus", "morfila", "XXXXXXXXX");
+            //Account myAccount = client.WhoAmI();
+
+
+
+
+            // Harvest API client:
+            // https://github.com/VolodymyrBaydalka/Harvest.Api
+
+            // We can manage the Harvest tokens from the Developers page:
+            // https://id.getharvest.com/developers
+
+            // Account ID: 
+            long accountId = 174347;
+            string accessToken = "121910.pt.yE9TZcsWWkwYc7kqxqwDL_u4SjLARa4LwYp9m3yyZ1sFOJ_uZwnKn4oRqOxjcSO13rDbrQiQLC1-jMazy2CLPA";
+
+
+            HarvestClient client = HarvestClient.FromAccessToken("Harvest API Example", accessToken);
+            client.DefaultAccountId = accountId;
+
+            client.Authorize(accessToken);
+
+            UserDetails harvestUser = await client.GetMe(accountId);
+            TimeEntriesResponse resp = await client.GetTimeEntriesAsync(userId: harvestUser.Id,
+                fromDate: DateTime.Parse("2022-06-10"), toDate: DateTime.Parse("2022-06-20"), accountId: accountId);
+
+            // The following methods either fail or cannot be used with my permissions:
+            //ProjectsResponse projects = await client.GetProjectsAsync(accountId: accountId);
+            //ProjectAssignmentsResponse projAssRes = await client.GetProjectAssignmentsAsync(userId: harvestUser.Id, accountId: accountId);
+            //TimeReportResponse r = await client.GetProjectsReportAsync(fromDate: DateTime.Parse("2022-06-10"), toDate: DateTime.Parse("2022-06-20"));
+
+
+
+
+
+            // Get the required data for a new entry from existing Time entries
+            Harvest.Api.TimeEntry sampleTimeEntry = null;
+            foreach (Harvest.Api.TimeEntry te in resp.TimeEntries)
+            {
+                if ("Development".Equals(te.Task.Name) && "Lord Abbett".Equals(te.Client.Name) && "LA CRM".Equals(te.Project.Name))
+                {
+                    sampleTimeEntry = te;
+                    break;
+                }
+            }
+
+
+// NEXT STEPS:
+// In the Time Entry, include the Project column.
+// Based on the Project value, get an appropriate sampleTimeEntry. If for any of the time entries it's not possible to find a suitable sampleTimeEntry, do not add any of the entries and throw an exception.
+// Ideally, before uploading an entry, we should check if the entry exists (compare Date, Duration, Project and Text). This is to avoid running the tool more than once, duplicating the entries.
+
+
+            DateTime timeEntryDate = DateTime.Parse("2022-06-30 13:00");
+            decimal hours = 1.25m;
+            string notes = @"
+  - Test note 1
+  - Test note 2
+";
+            Harvest.Api.TimeEntry newTimeEntry = await client.CreateTimeEntryAsync(
+                projectId: sampleTimeEntry.Project.Id,
+                taskId: sampleTimeEntry.Task.Id, spentDate: timeEntryDate,
+                hours: hours,
+                notes: notes,
+                userId: harvestUser.Id,
+                accountId: accountId
+                );
+
+
+            return "a";
         }
     }
 }

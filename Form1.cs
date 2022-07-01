@@ -40,6 +40,10 @@ namespace WorkTimeLogger
                 string output1 = TextGenerator.GetTextGroupedByDate(entries);
                 //string output2 = TextGenerator.GetTextGroupedByJira(entries);
                 string output3 = TextGenerator.GetCsvTextToImportUsingJiraAssistant(entries);
+
+
+                // Tools.SendTimesToHarvest();
+
             }
             catch (Exception ex)
             {
