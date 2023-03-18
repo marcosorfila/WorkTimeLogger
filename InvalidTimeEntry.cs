@@ -28,12 +28,13 @@ namespace WorkTimeLogger
             _ValidationErrorMessage = validationErrorMessage;
         }
 
-        public InvalidTimeEntry(int row, DateTime date, int durationInMinutes, string text, string validationErrorMessage = "")
+        public InvalidTimeEntry(int row, DateTime date, int durationInMinutes, string text, string project, string validationErrorMessage = "")
         {
             Row = row;
             Date = date;
             DurationInMinutes = durationInMinutes;
             Text = text;
+            Project = project;
             _ValidationErrorMessage = validationErrorMessage;
         }
 

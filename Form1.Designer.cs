@@ -42,15 +42,19 @@
             this.dlgOpenSpreadsheet = new System.Windows.Forms.OpenFileDialog();
             this.btnBrowseFile = new System.Windows.Forms.Button();
             this.txtFileName = new System.Windows.Forms.TextBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtProjectColumn = new System.Windows.Forms.TextBox();
+            this.btnSendToHarvest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numFirstRow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLastRow)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGenerateText
             // 
-            this.btnGenerateText.Location = new System.Drawing.Point(54, 622);
+            this.btnGenerateText.Location = new System.Drawing.Point(54, 686);
             this.btnGenerateText.Name = "btnGenerateText";
-            this.btnGenerateText.Size = new System.Drawing.Size(249, 55);
+            this.btnGenerateText.Size = new System.Drawing.Size(199, 55);
             this.btnGenerateText.TabIndex = 0;
             this.btnGenerateText.Text = "Generate Text";
             this.btnGenerateText.UseVisualStyleBackColor = true;
@@ -68,7 +72,7 @@
             this.numFirstRow.Size = new System.Drawing.Size(122, 31);
             this.numFirstRow.TabIndex = 2;
             this.numFirstRow.Value = new decimal(new int[] {
-            3669,
+            4618,
             0,
             0,
             0});
@@ -103,7 +107,7 @@
             // 
             // txtTimeColumn
             // 
-            this.txtTimeColumn.Location = new System.Drawing.Point(211, 438);
+            this.txtTimeColumn.Location = new System.Drawing.Point(211, 430);
             this.txtTimeColumn.Name = "txtTimeColumn";
             this.txtTimeColumn.Size = new System.Drawing.Size(122, 31);
             this.txtTimeColumn.TabIndex = 7;
@@ -121,7 +125,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(49, 438);
+            this.label4.Location = new System.Drawing.Point(49, 430);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 25);
             this.label4.TabIndex = 9;
@@ -130,7 +134,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(49, 507);
+            this.label5.Location = new System.Drawing.Point(49, 575);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 25);
             this.label5.TabIndex = 10;
@@ -138,7 +142,7 @@
             // 
             // txtTextColumn
             // 
-            this.txtTextColumn.Location = new System.Drawing.Point(211, 507);
+            this.txtTextColumn.Location = new System.Drawing.Point(211, 575);
             this.txtTextColumn.Name = "txtTextColumn";
             this.txtTextColumn.Size = new System.Drawing.Size(122, 31);
             this.txtTextColumn.TabIndex = 11;
@@ -156,7 +160,7 @@
             this.numLastRow.Size = new System.Drawing.Size(122, 31);
             this.numLastRow.TabIndex = 12;
             this.numLastRow.Value = new decimal(new int[] {
-            3701,
+            4623,
             0,
             0,
             0});
@@ -168,7 +172,7 @@
             // 
             // btnBrowseFile
             // 
-            this.btnBrowseFile.Location = new System.Drawing.Point(613, 124);
+            this.btnBrowseFile.Location = new System.Drawing.Point(456, 121);
             this.btnBrowseFile.Name = "btnBrowseFile";
             this.btnBrowseFile.Size = new System.Drawing.Size(41, 37);
             this.btnBrowseFile.TabIndex = 13;
@@ -178,7 +182,7 @@
             // 
             // txtFileName
             // 
-            this.txtFileName.Location = new System.Drawing.Point(211, 124);
+            this.txtFileName.Location = new System.Drawing.Point(54, 124);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.ReadOnly = true;
             this.txtFileName.Size = new System.Drawing.Size(396, 31);
@@ -186,11 +190,52 @@
             this.txtFileName.Text = "X:\\Meritus\\Meritus Time Sheet.xlsx";
             this.txtFileName.TextChanged += new System.EventHandler(this.txtFileName_TextChanged);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(54, 648);
+            this.progressBar1.MarqueeAnimationSpeed = 25;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(428, 20);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 15;
+            this.progressBar1.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(49, 501);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(158, 25);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Project Column";
+            // 
+            // txtProjectColumn
+            // 
+            this.txtProjectColumn.Location = new System.Drawing.Point(211, 501);
+            this.txtProjectColumn.Name = "txtProjectColumn";
+            this.txtProjectColumn.Size = new System.Drawing.Size(122, 31);
+            this.txtProjectColumn.TabIndex = 16;
+            this.txtProjectColumn.Text = "7";
+            // 
+            // btnSendToHarvest
+            // 
+            this.btnSendToHarvest.Location = new System.Drawing.Point(282, 686);
+            this.btnSendToHarvest.Name = "btnSendToHarvest";
+            this.btnSendToHarvest.Size = new System.Drawing.Size(200, 55);
+            this.btnSendToHarvest.TabIndex = 18;
+            this.btnSendToHarvest.Text = "Send to Harvest";
+            this.btnSendToHarvest.UseVisualStyleBackColor = true;
+            this.btnSendToHarvest.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 742);
+            this.ClientSize = new System.Drawing.Size(532, 777);
+            this.Controls.Add(this.btnSendToHarvest);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtProjectColumn);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.txtFileName);
             this.Controls.Add(this.btnBrowseFile);
             this.Controls.Add(this.numLastRow);
@@ -230,6 +275,10 @@
         private System.Windows.Forms.OpenFileDialog dlgOpenSpreadsheet;
         private System.Windows.Forms.Button btnBrowseFile;
         private System.Windows.Forms.TextBox txtFileName;
+        public System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtProjectColumn;
+        private System.Windows.Forms.Button btnSendToHarvest;
     }
 }
 

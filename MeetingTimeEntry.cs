@@ -20,12 +20,13 @@ namespace WorkTimeLogger
             _Description = String.Empty;
         }
 
-        public MeetingTimeEntry(int row, DateTime date, int durationInMinutes, string text, string description)
+        public MeetingTimeEntry(int row, DateTime date, int durationInMinutes, string text, string project, string description)
         {
             Row = row;
             Date = date;
             DurationInMinutes = durationInMinutes;
             Text = text;
+            Project = project;
             Description = description;
         }
 
@@ -45,7 +46,7 @@ namespace WorkTimeLogger
             {
                 return false;
             }
-            bool result = ((m.Description ?? "").Equals(this.Description) && m.Date == this.Date);
+            bool result = ((m.Description ?? "").Equals(this.Description) && m.Date == this.Date && m.Project == this.Project);
             return result;
         }
 

@@ -70,12 +70,13 @@ namespace WorkTimeLogger
             _CommentLines = new List<string>();
         }
 
-        public JiraTimeEntry(int row, DateTime date, int durationInMinutes, string text, string jiraId, string summary)
+        public JiraTimeEntry(int row, DateTime date, int durationInMinutes, string text, string project, string jiraId, string summary)
         {
             Row = row;
             Date = date;
             DurationInMinutes = durationInMinutes;
             Text = text;
+            Project = project;
             JiraId = jiraId;
             Summary = summary;
             _CommentLines = new List<string>();
@@ -101,7 +102,7 @@ namespace WorkTimeLogger
             {
                 return false;
             }
-            return j.JiraId == this.JiraId;
+            return (j.JiraId == this.JiraId && j.Project == this.Project);
         }
 
         public static bool operator ==(JiraTimeEntry left, JiraTimeEntry right)
