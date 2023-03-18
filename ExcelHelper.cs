@@ -69,7 +69,7 @@ namespace WorkTimeLogger
                         }
                         else
                         {
-                            throw new Exception(String.Format("The Time value in cell [{0},{1}] is invalid", row, timeColumn));
+                            throw new Exception(String.Format("The Time value in row {0} is invalid", row));
                         }
 
                         if (worksheet.Cells[row, projectColumn].Value != null)
@@ -97,7 +97,15 @@ namespace WorkTimeLogger
                         }
                         else
                         {
-                            result.Add(TimeEntry.CreateTimeEntry(row, date, timeInMinutes, text, projectName));
+                            if (String.IsNullOrEmpty(projectName) && timeInMinutes > 0)
+                            {
+                                // A valid entry with time must have a Project name
+                                throw new Exception(String.Format("The Project is not defined for row {0}", row));
+                            }
+                            else
+                            {
+                                result.Add(TimeEntry.CreateTimeEntry(row, date, timeInMinutes, text, projectName));
+                            }
                         }
                     }
                     catch (Exception ex)

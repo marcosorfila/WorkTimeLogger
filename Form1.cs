@@ -15,10 +15,15 @@ namespace WorkTimeLogger
         public Form1()
         {
             InitializeComponent();
+            btnGetCSV.Enabled = false;
+            btnSendToHarvest.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            txtOutput.Text = String.Empty;
+            btnGetCSV.Enabled = false;
+            btnSendToHarvest.Enabled = false;
             ProcessTimeEntries();
         }
 
@@ -28,7 +33,7 @@ namespace WorkTimeLogger
         /// Optionally, send the time entries to Harvest.
         /// </summary>
         /// <param name="sendToHarvest"></param>
-        private void ProcessTimeEntries (bool sendToHarvest = false)
+        private void ProcessTimeEntries (bool sendToHarvest = false, bool getCSVforJA = false)
         {
             try
             {
@@ -43,23 +48,21 @@ namespace WorkTimeLogger
                     textColumn: Convert.ToInt32(txtTextColumn.Text),
                     projectColumn: Convert.ToInt32(txtProjectColumn.Text));
 
+                txtOutput.Text = TextGenerator.GetTextGroupedByDate(entries);
 
-                // Sprints when Marcos was the support guy:
-                //   Sprint 33(3 / 3 - 3 / 16)-- Rows 28 to 160
-                //   Sprint 35(3 / 31 - 4 / 13) – Rows 260 to 403
-                //   Sprint 37(4 / 28 - 5 / 11) – Rows 510 to 609
-                //rowGroups.Add(new Tuple<int, int>(28, 160));
-                //rowGroups.Add(new Tuple<int, int>(260, 403));
-                //rowGroups.Add(new Tuple<int, int>(510, 609));
-                //output = TextGenerator.GetTextGroupedByJiraWithoutMeetingsAndDates(entries);
-
-                string output1 = TextGenerator.GetTextGroupedByDate(entries);
-                //string output2 = TextGenerator.GetTextGroupedByJira(entries);
-                string output3 = TextGenerator.GetCsvTextToImportUsingJiraAssistant(entries);
+                bool entriesHaveErrors = Tools.EntriesContainErrors(entries);
+                btnGetCSV.Enabled = !entriesHaveErrors;
+                btnSendToHarvest.Enabled = !entriesHaveErrors;
 
                 if (sendToHarvest)
                 {
                     HarvestHelper.SendTimesToHarvest(this, entries);
+                }
+                if (getCSVforJA)
+                {
+                    string csvText = TextGenerator.GetCsvTextToImportUsingJiraAssistant(entries);
+                    System.Windows.Forms.Clipboard.SetText(csvText);
+                    MessageBox.Show("The CSV for the Jira Assistant Chrome Extension has been copied to the clipboard", "CSV copied to Clipboardr", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -103,14 +106,42 @@ namespace WorkTimeLogger
 
         }
 
+
         private void numLastRow_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
+        private void txtDateColumn_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtDateColumn.Text.Length != 1)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                char columnLetter;
+                if (!Char.TryParse(txtDateColumn.Text, out columnLetter))
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    if (Char.ToLower(columnLetter) < 'a' || Char.ToLower(columnLetter) > 'z') {
+                        e.Cancel = true;
+                    }
+                }
+            }
+        }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
             ProcessTimeEntries(sendToHarvest: true);
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            ProcessTimeEntries(getCSVforJA: true);
         }
     }
 }

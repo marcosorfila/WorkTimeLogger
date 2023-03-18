@@ -222,5 +222,27 @@ namespace WorkTimeLogger
             return result;
         }
 
+
+        /// <summary>
+        /// Returns true if the list of entries contains validation errors.
+        /// </summary>
+        /// <param name="entries"></param>
+        /// <returns></returns>
+        static public bool EntriesContainErrors(List<TimeEntry> entries)
+        {
+            bool result = false;
+            if (entries != null && entries.Count > 0)
+            {
+                foreach (TimeEntry te in entries)
+                {
+                    if (te is InvalidTimeEntry)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
     }
 }
