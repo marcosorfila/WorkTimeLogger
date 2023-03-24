@@ -56,7 +56,7 @@ namespace WorkTimeLogger
 
                 if (sendToHarvest)
                 {
-                    HarvestHelper.SendTimesToHarvest(this, entries);
+                    HarvestHelper.SendTimesToHarvest(this, txtHarvestAccessToken.Text, entries);
                 }
                 if (getCSVforJA)
                 {
@@ -142,6 +142,11 @@ namespace WorkTimeLogger
         private void button1_Click_2(object sender, EventArgs e)
         {
             ProcessTimeEntries(getCSVforJA: true);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

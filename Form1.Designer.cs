@@ -48,13 +48,15 @@
             this.btnSendToHarvest = new System.Windows.Forms.Button();
             this.txtOutput = new System.Windows.Forms.RichTextBox();
             this.btnGetCSV = new System.Windows.Forms.Button();
+            this.txtHarvestAccessToken = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numFirstRow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLastRow)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGenerateText
             // 
-            this.btnGenerateText.Location = new System.Drawing.Point(54, 617);
+            this.btnGenerateText.Location = new System.Drawing.Point(54, 678);
             this.btnGenerateText.Name = "btnGenerateText";
             this.btnGenerateText.Size = new System.Drawing.Size(428, 55);
             this.btnGenerateText.TabIndex = 0;
@@ -64,7 +66,7 @@
             // 
             // numFirstRow
             // 
-            this.numFirstRow.Location = new System.Drawing.Point(211, 131);
+            this.numFirstRow.Location = new System.Drawing.Point(230, 131);
             this.numFirstRow.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -74,7 +76,7 @@
             this.numFirstRow.Size = new System.Drawing.Size(122, 31);
             this.numFirstRow.TabIndex = 2;
             this.numFirstRow.Value = new decimal(new int[] {
-            5313,
+            7,
             0,
             0,
             0});
@@ -101,7 +103,7 @@
             // 
             // txtDateColumn
             // 
-            this.txtDateColumn.Location = new System.Drawing.Point(211, 280);
+            this.txtDateColumn.Location = new System.Drawing.Point(230, 280);
             this.txtDateColumn.Name = "txtDateColumn";
             this.txtDateColumn.Size = new System.Drawing.Size(122, 31);
             this.txtDateColumn.TabIndex = 6;
@@ -110,11 +112,11 @@
             // 
             // txtTimeColumn
             // 
-            this.txtTimeColumn.Location = new System.Drawing.Point(211, 355);
+            this.txtTimeColumn.Location = new System.Drawing.Point(230, 355);
             this.txtTimeColumn.Name = "txtTimeColumn";
             this.txtTimeColumn.Size = new System.Drawing.Size(122, 31);
             this.txtTimeColumn.TabIndex = 7;
-            this.txtTimeColumn.Text = "6";
+            this.txtTimeColumn.Text = "5";
             // 
             // label3
             // 
@@ -145,15 +147,15 @@
             // 
             // txtTextColumn
             // 
-            this.txtTextColumn.Location = new System.Drawing.Point(211, 500);
+            this.txtTextColumn.Location = new System.Drawing.Point(230, 500);
             this.txtTextColumn.Name = "txtTextColumn";
             this.txtTextColumn.Size = new System.Drawing.Size(122, 31);
             this.txtTextColumn.TabIndex = 11;
-            this.txtTextColumn.Text = "10";
+            this.txtTextColumn.Text = "9";
             // 
             // numLastRow
             // 
-            this.numLastRow.Location = new System.Drawing.Point(211, 204);
+            this.numLastRow.Location = new System.Drawing.Point(230, 204);
             this.numLastRow.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -163,7 +165,7 @@
             this.numLastRow.Size = new System.Drawing.Size(122, 31);
             this.numLastRow.TabIndex = 12;
             this.numLastRow.Value = new decimal(new int[] {
-            5413,
+            11,
             0,
             0,
             0});
@@ -190,12 +192,12 @@
             this.txtFileName.ReadOnly = true;
             this.txtFileName.Size = new System.Drawing.Size(396, 31);
             this.txtFileName.TabIndex = 14;
-            this.txtFileName.Text = "X:\\Meritus\\Meritus Time Sheet.xlsx";
+            this.txtFileName.Text = "X:\\Meritus\\Test Time Sheet.xlsx";
             this.txtFileName.TextChanged += new System.EventHandler(this.txtFileName_TextChanged);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(54, 573);
+            this.progressBar1.Location = new System.Drawing.Point(54, 634);
             this.progressBar1.MarqueeAnimationSpeed = 25;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(428, 20);
@@ -214,15 +216,15 @@
             // 
             // txtProjectColumn
             // 
-            this.txtProjectColumn.Location = new System.Drawing.Point(211, 426);
+            this.txtProjectColumn.Location = new System.Drawing.Point(230, 426);
             this.txtProjectColumn.Name = "txtProjectColumn";
             this.txtProjectColumn.Size = new System.Drawing.Size(122, 31);
             this.txtProjectColumn.TabIndex = 16;
-            this.txtProjectColumn.Text = "7";
+            this.txtProjectColumn.Text = "6";
             // 
             // btnSendToHarvest
             // 
-            this.btnSendToHarvest.Location = new System.Drawing.Point(54, 709);
+            this.btnSendToHarvest.Location = new System.Drawing.Point(54, 770);
             this.btnSendToHarvest.Name = "btnSendToHarvest";
             this.btnSendToHarvest.Size = new System.Drawing.Size(200, 55);
             this.btnSendToHarvest.TabIndex = 18;
@@ -244,7 +246,7 @@
             // 
             // btnGetCSV
             // 
-            this.btnGetCSV.Location = new System.Drawing.Point(282, 709);
+            this.btnGetCSV.Location = new System.Drawing.Point(282, 770);
             this.btnGetCSV.Name = "btnGetCSV";
             this.btnGetCSV.Size = new System.Drawing.Size(200, 55);
             this.btnGetCSV.TabIndex = 20;
@@ -252,11 +254,30 @@
             this.btnGetCSV.UseVisualStyleBackColor = true;
             this.btnGetCSV.Click += new System.EventHandler(this.button1_Click_2);
             // 
+            // txtHarvestAccessToken
+            // 
+            this.txtHarvestAccessToken.Location = new System.Drawing.Point(229, 566);
+            this.txtHarvestAccessToken.Name = "txtHarvestAccessToken";
+            this.txtHarvestAccessToken.Size = new System.Drawing.Size(253, 31);
+            this.txtHarvestAccessToken.TabIndex = 21;
+            this.txtHarvestAccessToken.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(52, 566);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(152, 25);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Harvest Token";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1998, 930);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtHarvestAccessToken);
             this.Controls.Add(this.btnGetCSV);
             this.Controls.Add(this.txtOutput);
             this.Controls.Add(this.btnSendToHarvest);
@@ -309,6 +330,8 @@
         private System.Windows.Forms.Button btnSendToHarvest;
         private System.Windows.Forms.RichTextBox txtOutput;
         private System.Windows.Forms.Button btnGetCSV;
+        private System.Windows.Forms.TextBox txtHarvestAccessToken;
+        private System.Windows.Forms.Label label7;
     }
 }
 

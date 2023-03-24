@@ -15,7 +15,7 @@ namespace WorkTimeLogger
         /// Send the given Time Entries to Harvest.
         /// </summary>
         /// <param name="entries"></param>
-        public static async void SendTimesToHarvest(Form1 form, List<TimeEntry> entries)
+        public static async void SendTimesToHarvest(Form1 form, string accessToken, List<TimeEntry> entries)
         {
             // Set backward compatibility with TLS 1.2 and previous versions
             System.Net.ServicePointManager.SecurityProtocol |= System.Net.SecurityProtocolType.Tls12;
@@ -30,9 +30,6 @@ namespace WorkTimeLogger
 
             // Account ID: 
             long accountId = 174347;
-            string accessToken = "121910.pt.yE9TZcsWWkwYc7kqxqwDL_u4SjLARa4LwYp9m3yyZ1sFOJ_uZwnKn4oRqOxjcSO13rDbrQiQLC1-jMazy2CLPA";
-
-
 
             HarvestClient client = HarvestClient.FromAccessToken("Harvest API Example", accessToken);
             client.DefaultAccountId = accountId;
