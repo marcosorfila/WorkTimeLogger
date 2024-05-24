@@ -260,6 +260,7 @@
             this.txtHarvestAccessToken.Name = "txtHarvestAccessToken";
             this.txtHarvestAccessToken.Size = new System.Drawing.Size(253, 31);
             this.txtHarvestAccessToken.TabIndex = 21;
+			this.txtHarvestAccessToken.Text = "Set token here";
             this.txtHarvestAccessToken.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label7
