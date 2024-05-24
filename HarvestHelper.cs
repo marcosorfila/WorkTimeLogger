@@ -240,10 +240,10 @@ namespace WorkTimeLogger
             switch (projectNameInSpreadsheet)
             {
                 case "LA - CRM":
-                    resp = await client.GetTimeEntriesAsync(fromDate: DateTime.Parse("2022-06-30"), toDate: DateTime.Parse("2022-06-30"));
+                    resp = await client.GetTimeEntriesAsync(fromDate: DateTime.Parse("2023-06-22"), toDate: DateTime.Parse("2023-06-22"));
                     foreach (Harvest.Api.TimeEntry te in resp.TimeEntries)
                     {
-                        if ("Lord Abbett".Equals(te.Client.Name) && "LA CRM".Equals(te.Project.Name) && "Development".Equals(te.Task.Name))
+                        if ("Lord Abbett".Equals(te.Client.Name) && "CRM Enhancements".Equals(te.Project.Name) && "Development".Equals(te.Task.Name))
                         {
                             sampleTimeEntry = te;
                             break;

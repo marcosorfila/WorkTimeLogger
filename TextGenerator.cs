@@ -175,6 +175,13 @@ namespace WorkTimeLogger
 
             List<TimeEntry> consolidatedEntries = Tools.ConsolidateTimeEntries(entries);
 
+            List<TimeEntry> invalidEntries = consolidatedEntries.Where(entry => entry is InvalidTimeEntry).ToList();
+            if (invalidEntries.Count > 0)
+            {
+                throw new Exception("Please review the invalid entries before requesting the CSV text.");
+            }
+
+
             // Identify the Jiras with the higher times in each Date. We will add the Meetings for that Date into that Jira.
             Dictionary<DateTime, JiraTimeEntry> longestJiraPerDay = Tools.GetLongestJiraPerDay(consolidatedEntries);
             // Get the Meeting Time Entry for each day
