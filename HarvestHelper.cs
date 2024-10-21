@@ -15,12 +15,10 @@ namespace WorkTimeLogger
         /// Send the given Time Entries to Harvest.
         /// </summary>
         /// <param name="entries"></param>
-        public static async void SendTimesToHarvest(Form1 form, string accessToken, List<TimeEntry> entries)
+        public static async void SendTimesToHarvest(Form1 form, long accountId, string accessToken, List<TimeEntry> entries)
         {
             // Set backward compatibility with TLS 1.2 and previous versions
             System.Net.ServicePointManager.SecurityProtocol |= System.Net.SecurityProtocolType.Tls12;
-
-
 
             // Harvest API client:
             // https://github.com/VolodymyrBaydalka/Harvest.Api
@@ -28,8 +26,6 @@ namespace WorkTimeLogger
             // We can manage the Harvest tokens from the Developers page:
             // https://id.getharvest.com/developers
 
-            // Account ID: 
-            long accountId = 174347;
 
             HarvestClient client = HarvestClient.FromAccessToken("Harvest API Example", accessToken);
             client.DefaultAccountId = accountId;
@@ -53,7 +49,7 @@ namespace WorkTimeLogger
                 }
                 else
                 {
-                    Task<string> task1 = SendTimesToHarvest_Step2(entries, sampleEntries);
+                    Task<string> task1 = SendTimesToHarvest_Step2(accountId, accessToken, entries, sampleEntries);
                     string text1 = await task1;
                 }
             }
@@ -117,6 +113,8 @@ namespace WorkTimeLogger
 
 
         protected static async Task<string> SendTimesToHarvest_Step2(
+            long accountId,
+            string accessToken,
             List<TimeEntry> entries,
             Dictionary<string, Harvest.Api.TimeEntry> sampleEntries
             )
@@ -126,10 +124,6 @@ namespace WorkTimeLogger
 
             // We can manage the Harvest tokens from the Developers page:
             // https://id.getharvest.com/developers
-
-            // Account ID: 
-            long accountId = 174347;
-            string accessToken = "121910.pt.yE9TZcsWWkwYc7kqxqwDL_u4SjLARa4LwYp9m3yyZ1sFOJ_uZwnKn4oRqOxjcSO13rDbrQiQLC1-jMazy2CLPA";
 
 
             HarvestClient client = HarvestClient.FromAccessToken("Harvest API Example", accessToken);
@@ -240,43 +234,21 @@ namespace WorkTimeLogger
             switch (projectNameInSpreadsheet)
             {
                 case "LA - CRM":
-                    resp = await client.GetTimeEntriesAsync(fromDate: DateTime.Parse("2023-06-22"), toDate: DateTime.Parse("2023-06-22"));
+                    resp = await client.GetTimeEntriesAsync(fromDate: DateTime.Parse("2024-09-30"), toDate: DateTime.Parse("2024-09-30"));
                     foreach (Harvest.Api.TimeEntry te in resp.TimeEntries)
                     {
-                        if ("Lord Abbett".Equals(te.Client.Name) && "CRM Enhancements".Equals(te.Project.Name) && "Development".Equals(te.Task.Name))
+                        if ("Lord Abbett".Equals(te.Client.Name) && "Infor CRM - Support and Enhancements".Equals(te.Project.Name) && "Infor Development".Equals(te.Task.Name))
                         {
                             sampleTimeEntry = te;
                             break;
                         }
                     }
                     break;
-                case "Meritus - Internal":
-                    resp = await client.GetTimeEntriesAsync(fromDate: DateTime.Parse("2022-03-01"), toDate: DateTime.Parse("2022-03-01"));
+                case "Omnico - Vacation":
+                    resp = await client.GetTimeEntriesAsync(fromDate: DateTime.Parse("2024-09-30"), toDate: DateTime.Parse("2024-09-30"));
                     foreach (Harvest.Api.TimeEntry te in resp.TimeEntries)
                     {
-                        if ("Meritus".Equals(te.Client.Name) && "Internal".Equals(te.Project.Name) && "Vacation".Equals(te.Task.Name))
-                        {
-                            sampleTimeEntry = te;
-                            break;
-                        }
-                    }
-                    break;
-                case "Meritus - Training":
-                    resp = await client.GetTimeEntriesAsync(fromDate: DateTime.Parse("2022-05-12"), toDate: DateTime.Parse("2022-05-12"));
-                    foreach (Harvest.Api.TimeEntry te in resp.TimeEntries)
-                    {
-                        if ("Meritus".Equals(te.Client.Name) && "Training".Equals(te.Project.Name) && "Training".Equals(te.Task.Name))
-                        {
-                            sampleTimeEntry = te;
-                            break;
-                        }
-                    }
-                    break;
-                case "Meritus - Vacation":
-                    resp = await client.GetTimeEntriesAsync(fromDate: DateTime.Parse("2022-02-28"), toDate: DateTime.Parse("2022-02-28"));
-                    foreach (Harvest.Api.TimeEntry te in resp.TimeEntries)
-                    {
-                        if ("Meritus".Equals(te.Client.Name) && "Internal".Equals(te.Project.Name) && "Vacation".Equals(te.Task.Name))
+                        if ("OMNICO".Equals(te.Client.Name) && "2024 Approved Vacations".Equals(te.Project.Name) && "Project Management".Equals(te.Task.Name))
                         {
                             sampleTimeEntry = te;
                             break;

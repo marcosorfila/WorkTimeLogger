@@ -56,7 +56,20 @@ namespace WorkTimeLogger
 
                 if (sendToHarvest)
                 {
-                    HarvestHelper.SendTimesToHarvest(this, txtHarvestAccessToken.Text, entries);
+                    long accountId = -1;
+                    if (!long.TryParse(txtHarvestAccountId.Text, out accountId))
+                    {
+                        MessageBox.Show(
+                            text: "Harvest Account Id must be a long integer.", 
+                            caption: "Wrong Account Id", 
+                            buttons: MessageBoxButtons.OK, 
+                            icon: MessageBoxIcon.Error
+                            );
+                    }
+                    else
+                    {
+                        HarvestHelper.SendTimesToHarvest(this, accountId, txtHarvestAccessToken.Text, entries);
+                    }
                 }
                 if (getCSVforJA)
                 {
@@ -145,6 +158,11 @@ namespace WorkTimeLogger
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }

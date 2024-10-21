@@ -49,14 +49,16 @@
             this.txtOutput = new System.Windows.Forms.RichTextBox();
             this.btnGetCSV = new System.Windows.Forms.Button();
             this.txtHarvestAccessToken = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblHarvestToken = new System.Windows.Forms.Label();
+            this.lblHarvestAccountId = new System.Windows.Forms.Label();
+            this.txtHarvestAccountId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numFirstRow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLastRow)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGenerateText
             // 
-            this.btnGenerateText.Location = new System.Drawing.Point(54, 678);
+            this.btnGenerateText.Location = new System.Drawing.Point(54, 737);
             this.btnGenerateText.Name = "btnGenerateText";
             this.btnGenerateText.Size = new System.Drawing.Size(428, 55);
             this.btnGenerateText.TabIndex = 0;
@@ -76,7 +78,7 @@
             this.numFirstRow.Size = new System.Drawing.Size(122, 31);
             this.numFirstRow.TabIndex = 2;
             this.numFirstRow.Value = new decimal(new int[] {
-            7,
+            8692,
             0,
             0,
             0});
@@ -116,7 +118,7 @@
             this.txtTimeColumn.Name = "txtTimeColumn";
             this.txtTimeColumn.Size = new System.Drawing.Size(122, 31);
             this.txtTimeColumn.TabIndex = 7;
-            this.txtTimeColumn.Text = "5";
+            this.txtTimeColumn.Text = "6";
             // 
             // label3
             // 
@@ -151,7 +153,7 @@
             this.txtTextColumn.Name = "txtTextColumn";
             this.txtTextColumn.Size = new System.Drawing.Size(122, 31);
             this.txtTextColumn.TabIndex = 11;
-            this.txtTextColumn.Text = "9";
+            this.txtTextColumn.Text = "10";
             // 
             // numLastRow
             // 
@@ -165,7 +167,7 @@
             this.numLastRow.Size = new System.Drawing.Size(122, 31);
             this.numLastRow.TabIndex = 12;
             this.numLastRow.Value = new decimal(new int[] {
-            11,
+            8693,
             0,
             0,
             0});
@@ -192,12 +194,12 @@
             this.txtFileName.ReadOnly = true;
             this.txtFileName.Size = new System.Drawing.Size(396, 31);
             this.txtFileName.TabIndex = 14;
-            this.txtFileName.Text = "X:\\Meritus\\Test Time Sheet.xlsx";
+            this.txtFileName.Text = "X:\\Meritus\\Meritus Time Sheet.xlsx";
             this.txtFileName.TextChanged += new System.EventHandler(this.txtFileName_TextChanged);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(54, 634);
+            this.progressBar1.Location = new System.Drawing.Point(54, 693);
             this.progressBar1.MarqueeAnimationSpeed = 25;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(428, 20);
@@ -220,11 +222,11 @@
             this.txtProjectColumn.Name = "txtProjectColumn";
             this.txtProjectColumn.Size = new System.Drawing.Size(122, 31);
             this.txtProjectColumn.TabIndex = 16;
-            this.txtProjectColumn.Text = "6";
+            this.txtProjectColumn.Text = "7";
             // 
             // btnSendToHarvest
             // 
-            this.btnSendToHarvest.Location = new System.Drawing.Point(54, 770);
+            this.btnSendToHarvest.Location = new System.Drawing.Point(54, 829);
             this.btnSendToHarvest.Name = "btnSendToHarvest";
             this.btnSendToHarvest.Size = new System.Drawing.Size(200, 55);
             this.btnSendToHarvest.TabIndex = 18;
@@ -240,13 +242,13 @@
             this.txtOutput.Location = new System.Drawing.Point(635, 46);
             this.txtOutput.Margin = new System.Windows.Forms.Padding(0);
             this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(1313, 848);
+            this.txtOutput.Size = new System.Drawing.Size(1313, 842);
             this.txtOutput.TabIndex = 19;
             this.txtOutput.Text = "";
             // 
             // btnGetCSV
             // 
-            this.btnGetCSV.Location = new System.Drawing.Point(282, 770);
+            this.btnGetCSV.Location = new System.Drawing.Point(282, 829);
             this.btnGetCSV.Name = "btnGetCSV";
             this.btnGetCSV.Size = new System.Drawing.Size(200, 55);
             this.btnGetCSV.TabIndex = 20;
@@ -256,28 +258,48 @@
             // 
             // txtHarvestAccessToken
             // 
-            this.txtHarvestAccessToken.Location = new System.Drawing.Point(229, 566);
+            this.txtHarvestAccessToken.Location = new System.Drawing.Point(226, 635);
             this.txtHarvestAccessToken.Name = "txtHarvestAccessToken";
             this.txtHarvestAccessToken.Size = new System.Drawing.Size(253, 31);
             this.txtHarvestAccessToken.TabIndex = 21;
-			this.txtHarvestAccessToken.Text = "Set token here";
+            this.txtHarvestAccessToken.Text = "00 - Set Token Here - 00";
             this.txtHarvestAccessToken.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // label7
+            // lblHarvestToken
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(52, 566);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(152, 25);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Harvest Token";
+            this.lblHarvestToken.AutoSize = true;
+            this.lblHarvestToken.Location = new System.Drawing.Point(49, 635);
+            this.lblHarvestToken.Name = "lblHarvestToken";
+            this.lblHarvestToken.Size = new System.Drawing.Size(152, 25);
+            this.lblHarvestToken.TabIndex = 22;
+            this.lblHarvestToken.Text = "Harvest Token";
+            // 
+            // lblHarvestAccountId
+            // 
+            this.lblHarvestAccountId.AutoSize = true;
+            this.lblHarvestAccountId.Location = new System.Drawing.Point(49, 572);
+            this.lblHarvestAccountId.Name = "lblHarvestAccountId";
+            this.lblHarvestAccountId.Size = new System.Drawing.Size(151, 25);
+            this.lblHarvestAccountId.TabIndex = 24;
+            this.lblHarvestAccountId.Text = "Harvest Acc Id";
+            this.lblHarvestAccountId.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // txtHarvestAccountId
+            // 
+            this.txtHarvestAccountId.Location = new System.Drawing.Point(226, 572);
+            this.txtHarvestAccountId.Name = "txtHarvestAccountId";
+            this.txtHarvestAccountId.Size = new System.Drawing.Size(253, 31);
+            this.txtHarvestAccountId.TabIndex = 23;
+            this.txtHarvestAccountId.Text = "1840623";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1998, 930);
-            this.Controls.Add(this.label7);
+            this.ClientSize = new System.Drawing.Size(1998, 924);
+            this.Controls.Add(this.lblHarvestAccountId);
+            this.Controls.Add(this.txtHarvestAccountId);
+            this.Controls.Add(this.lblHarvestToken);
             this.Controls.Add(this.txtHarvestAccessToken);
             this.Controls.Add(this.btnGetCSV);
             this.Controls.Add(this.txtOutput);
@@ -332,7 +354,9 @@
         private System.Windows.Forms.RichTextBox txtOutput;
         private System.Windows.Forms.Button btnGetCSV;
         private System.Windows.Forms.TextBox txtHarvestAccessToken;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblHarvestToken;
+        private System.Windows.Forms.Label lblHarvestAccountId;
+        private System.Windows.Forms.TextBox txtHarvestAccountId;
     }
 }
 
