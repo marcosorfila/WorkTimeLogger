@@ -245,10 +245,10 @@ namespace WorkTimeLogger
                     }
                     break;
                 case "Omnico - Vacation":
-                    resp = await client.GetTimeEntriesAsync(fromDate: DateTime.Parse("2024-09-30"), toDate: DateTime.Parse("2024-09-30"));
+                    resp = await client.GetTimeEntriesAsync(fromDate: DateTime.Parse("2024-11-28"), toDate: DateTime.Parse("2024-11-28"));
                     foreach (Harvest.Api.TimeEntry te in resp.TimeEntries)
                     {
-                        if ("OMNICO".Equals(te.Client.Name) && "2024 Approved Vacations".Equals(te.Project.Name) && "Project Management".Equals(te.Task.Name))
+                        if ("OMNICO".Equals(te.Client.Name) && (te.Project.Name ?? "").Contains("Vacations") && "Vacation".Equals(te.Task.Name))
                         {
                             sampleTimeEntry = te;
                             break;
