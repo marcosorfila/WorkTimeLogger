@@ -48,7 +48,7 @@ namespace WorkTimeLogger
                     textColumn: Convert.ToInt32(txtTextColumn.Text),
                     projectColumn: Convert.ToInt32(txtProjectColumn.Text));
 
-                txtOutput.Text = TextGenerator.GetTextGroupedByDate(entries);
+                txtOutput.Text = TextGenerator.GetTextGroupedByDate(entries, chkIncludeTimeForEachEntry.Checked);
 
                 bool entriesHaveErrors = Tools.EntriesContainErrors(entries);
                 btnGetCSV.Enabled = !entriesHaveErrors;
@@ -163,6 +163,11 @@ namespace WorkTimeLogger
         }
 
         private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }
