@@ -13,8 +13,9 @@ namespace WorkTimeLogger
         /// Get the text with all the meetings grouped by date.
         /// </summary>
         /// <param name="entries"></param>
+        /// <param name="showTimeForEachEntry">If true, show the time for each Jira</param>
         /// <returns></returns>
-        public static string GetTextGroupedByDate(List<TimeEntry> entries)
+        public static string GetTextGroupedByDate(List<TimeEntry> entries, bool showTimeForEachEntry = true)
         {
             List<TimeEntry> consolidatedEntries = Tools.ConsolidateTimeEntries(entries);
 
@@ -52,7 +53,10 @@ namespace WorkTimeLogger
                             jiraOutput.AppendLine(meetingsForEachDay[day].Description);
                         }
 
-                        validJirasStr.AppendLine(FormatMinutesToHours(duration));
+                        if (showTimeForEachEntry)
+                        {
+                            validJirasStr.AppendLine(FormatMinutesToHours(duration));
+                        }
                         validJirasStr.AppendLine(jiraOutput.ToString());
                         totalTimeForThisDay += duration;
                     }
