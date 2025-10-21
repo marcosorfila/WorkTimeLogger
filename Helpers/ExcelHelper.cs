@@ -25,7 +25,8 @@ namespace WorkTimeLogger
             List<TimeEntry> result = new List<TimeEntry>();
 
             FileInfo fileInfo = new FileInfo(filePath);
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            //ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage.License.SetNonCommercialPersonal("My Name");
             ExcelPackage package = new ExcelPackage(fileInfo);
             ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
 

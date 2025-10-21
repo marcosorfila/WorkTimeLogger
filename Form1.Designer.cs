@@ -60,10 +60,10 @@
             // 
             // btnGenerateText
             // 
-            this.btnGenerateText.Location = new System.Drawing.Point(40, 631);
-            this.btnGenerateText.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGenerateText.Location = new System.Drawing.Point(53, 789);
+            this.btnGenerateText.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGenerateText.Name = "btnGenerateText";
-            this.btnGenerateText.Size = new System.Drawing.Size(361, 44);
+            this.btnGenerateText.Size = new System.Drawing.Size(481, 55);
             this.btnGenerateText.TabIndex = 0;
             this.btnGenerateText.Text = "Generate Text to Review";
             this.btnGenerateText.UseVisualStyleBackColor = true;
@@ -71,15 +71,15 @@
             // 
             // numFirstRow
             // 
-            this.numFirstRow.Location = new System.Drawing.Point(214, 105);
-            this.numFirstRow.Margin = new System.Windows.Forms.Padding(2);
+            this.numFirstRow.Location = new System.Drawing.Point(285, 131);
+            this.numFirstRow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numFirstRow.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.numFirstRow.Name = "numFirstRow";
-            this.numFirstRow.Size = new System.Drawing.Size(92, 26);
+            this.numFirstRow.Size = new System.Drawing.Size(123, 31);
             this.numFirstRow.TabIndex = 2;
             this.numFirstRow.Value = new decimal(new int[] {
             1942,
@@ -91,10 +91,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 110);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(49, 138);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 20);
+            this.label1.Size = new System.Drawing.Size(102, 25);
             this.label1.TabIndex = 3;
             this.label1.Text = "First Row";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -102,82 +101,78 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 163);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(49, 204);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 20);
+            this.label2.Size = new System.Drawing.Size(101, 25);
             this.label2.TabIndex = 4;
             this.label2.Text = "Last Row";
             // 
             // txtDateColumn
             // 
-            this.txtDateColumn.Location = new System.Drawing.Point(214, 224);
-            this.txtDateColumn.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDateColumn.Location = new System.Drawing.Point(285, 280);
+            this.txtDateColumn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDateColumn.Name = "txtDateColumn";
-            this.txtDateColumn.Size = new System.Drawing.Size(92, 26);
+            this.txtDateColumn.Size = new System.Drawing.Size(121, 31);
             this.txtDateColumn.TabIndex = 6;
             this.txtDateColumn.Text = "2";
             this.txtDateColumn.Validating += new System.ComponentModel.CancelEventHandler(this.txtDateColumn_Validating);
             // 
             // txtTimeColumn
             // 
-            this.txtTimeColumn.Location = new System.Drawing.Point(214, 284);
-            this.txtTimeColumn.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTimeColumn.Location = new System.Drawing.Point(285, 355);
+            this.txtTimeColumn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTimeColumn.Name = "txtTimeColumn";
-            this.txtTimeColumn.Size = new System.Drawing.Size(92, 26);
+            this.txtTimeColumn.Size = new System.Drawing.Size(121, 31);
             this.txtTimeColumn.TabIndex = 7;
             this.txtTimeColumn.Text = "6";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 224);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(49, 280);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 20);
+            this.label3.Size = new System.Drawing.Size(136, 25);
             this.label3.TabIndex = 8;
             this.label3.Text = "Date Column";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 284);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(49, 355);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 20);
+            this.label4.Size = new System.Drawing.Size(138, 25);
             this.label4.TabIndex = 9;
             this.label4.Text = "Time Column";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(37, 400);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(49, 500);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 20);
+            this.label5.Size = new System.Drawing.Size(133, 25);
             this.label5.TabIndex = 10;
             this.label5.Text = "Text Column";
             // 
             // txtTextColumn
             // 
-            this.txtTextColumn.Location = new System.Drawing.Point(214, 400);
-            this.txtTextColumn.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTextColumn.Location = new System.Drawing.Point(285, 500);
+            this.txtTextColumn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTextColumn.Name = "txtTextColumn";
-            this.txtTextColumn.Size = new System.Drawing.Size(92, 26);
+            this.txtTextColumn.Size = new System.Drawing.Size(121, 31);
             this.txtTextColumn.TabIndex = 11;
             this.txtTextColumn.Text = "10";
             // 
             // numLastRow
             // 
-            this.numLastRow.Location = new System.Drawing.Point(214, 163);
-            this.numLastRow.Margin = new System.Windows.Forms.Padding(2);
+            this.numLastRow.Location = new System.Drawing.Point(285, 204);
+            this.numLastRow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numLastRow.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.numLastRow.Name = "numLastRow";
-            this.numLastRow.Size = new System.Drawing.Size(92, 26);
+            this.numLastRow.Size = new System.Drawing.Size(123, 31);
             this.numLastRow.TabIndex = 12;
             this.numLastRow.Value = new decimal(new int[] {
             1960,
@@ -192,10 +187,10 @@
             // 
             // btnBrowseFile
             // 
-            this.btnBrowseFile.Location = new System.Drawing.Point(342, 37);
-            this.btnBrowseFile.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBrowseFile.Location = new System.Drawing.Point(456, 46);
+            this.btnBrowseFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBrowseFile.Name = "btnBrowseFile";
-            this.btnBrowseFile.Size = new System.Drawing.Size(31, 30);
+            this.btnBrowseFile.Size = new System.Drawing.Size(41, 38);
             this.btnBrowseFile.TabIndex = 13;
             this.btnBrowseFile.Text = "...";
             this.btnBrowseFile.UseVisualStyleBackColor = true;
@@ -203,22 +198,22 @@
             // 
             // txtFileName
             // 
-            this.txtFileName.Location = new System.Drawing.Point(40, 39);
-            this.txtFileName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFileName.Location = new System.Drawing.Point(53, 49);
+            this.txtFileName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.ReadOnly = true;
-            this.txtFileName.Size = new System.Drawing.Size(298, 26);
+            this.txtFileName.Size = new System.Drawing.Size(396, 31);
             this.txtFileName.TabIndex = 14;
-            this.txtFileName.Text = "X:\\Omnico\\Omnico Time Sheet.xlsx";
+            this.txtFileName.Text = "C:\\Users\\morfi\\Downloads\\Omnico Time Sheet.xlsx";
             this.txtFileName.TextChanged += new System.EventHandler(this.txtFileName_TextChanged);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(40, 598);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
+            this.progressBar1.Location = new System.Drawing.Point(53, 748);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.progressBar1.MarqueeAnimationSpeed = 25;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(361, 14);
+            this.progressBar1.Size = new System.Drawing.Size(481, 18);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 15;
             this.progressBar1.Visible = false;
@@ -226,28 +221,27 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(37, 341);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(49, 426);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(116, 20);
+            this.label6.Size = new System.Drawing.Size(158, 25);
             this.label6.TabIndex = 17;
             this.label6.Text = "Project Column";
             // 
             // txtProjectColumn
             // 
-            this.txtProjectColumn.Location = new System.Drawing.Point(214, 341);
-            this.txtProjectColumn.Margin = new System.Windows.Forms.Padding(2);
+            this.txtProjectColumn.Location = new System.Drawing.Point(285, 426);
+            this.txtProjectColumn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtProjectColumn.Name = "txtProjectColumn";
-            this.txtProjectColumn.Size = new System.Drawing.Size(92, 26);
+            this.txtProjectColumn.Size = new System.Drawing.Size(121, 31);
             this.txtProjectColumn.TabIndex = 16;
             this.txtProjectColumn.Text = "7";
             // 
             // btnSendToHarvest
             // 
-            this.btnSendToHarvest.Location = new System.Drawing.Point(40, 705);
-            this.btnSendToHarvest.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSendToHarvest.Location = new System.Drawing.Point(53, 881);
+            this.btnSendToHarvest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSendToHarvest.Name = "btnSendToHarvest";
-            this.btnSendToHarvest.Size = new System.Drawing.Size(171, 44);
+            this.btnSendToHarvest.Size = new System.Drawing.Size(228, 55);
             this.btnSendToHarvest.TabIndex = 18;
             this.btnSendToHarvest.Text = "Send to Harvest";
             this.btnSendToHarvest.UseVisualStyleBackColor = true;
@@ -258,19 +252,19 @@
             this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOutput.Location = new System.Drawing.Point(476, 37);
+            this.txtOutput.Location = new System.Drawing.Point(635, 46);
             this.txtOutput.Margin = new System.Windows.Forms.Padding(0);
             this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(986, 734);
+            this.txtOutput.Size = new System.Drawing.Size(1313, 916);
             this.txtOutput.TabIndex = 19;
             this.txtOutput.Text = "";
             // 
             // btnGetCSV
             // 
-            this.btnGetCSV.Location = new System.Drawing.Point(229, 705);
-            this.btnGetCSV.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGetCSV.Location = new System.Drawing.Point(305, 881);
+            this.btnGetCSV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGetCSV.Name = "btnGetCSV";
-            this.btnGetCSV.Size = new System.Drawing.Size(172, 44);
+            this.btnGetCSV.Size = new System.Drawing.Size(229, 55);
             this.btnGetCSV.TabIndex = 20;
             this.btnGetCSV.Text = "Get CSV for JA";
             this.btnGetCSV.UseVisualStyleBackColor = true;
@@ -278,10 +272,10 @@
             // 
             // txtHarvestAccessToken
             // 
-            this.txtHarvestAccessToken.Location = new System.Drawing.Point(212, 508);
-            this.txtHarvestAccessToken.Margin = new System.Windows.Forms.Padding(2);
+            this.txtHarvestAccessToken.Location = new System.Drawing.Point(283, 635);
+            this.txtHarvestAccessToken.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHarvestAccessToken.Name = "txtHarvestAccessToken";
-            this.txtHarvestAccessToken.Size = new System.Drawing.Size(191, 26);
+            this.txtHarvestAccessToken.Size = new System.Drawing.Size(253, 31);
             this.txtHarvestAccessToken.TabIndex = 21;
             this.txtHarvestAccessToken.Text = "3745225.pt.OM7_3OXOTmcHbOOxU0h0WyQx2q2jf83SXQbOZ39_FdBLrzez5BzH7s3H4IiO_Pf90CfYOi" +
     "Bqj3acubiM6CP38w";
@@ -290,59 +284,56 @@
             // lblHarvestToken
             // 
             this.lblHarvestToken.AutoSize = true;
-            this.lblHarvestToken.Location = new System.Drawing.Point(37, 508);
-            this.lblHarvestToken.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHarvestToken.Location = new System.Drawing.Point(49, 635);
             this.lblHarvestToken.Name = "lblHarvestToken";
-            this.lblHarvestToken.Size = new System.Drawing.Size(112, 20);
+            this.lblHarvestToken.Size = new System.Drawing.Size(152, 25);
             this.lblHarvestToken.TabIndex = 22;
             this.lblHarvestToken.Text = "Harvest Token";
             // 
             // lblHarvestAccountId
             // 
             this.lblHarvestAccountId.AutoSize = true;
-            this.lblHarvestAccountId.Location = new System.Drawing.Point(37, 458);
-            this.lblHarvestAccountId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHarvestAccountId.Location = new System.Drawing.Point(49, 572);
             this.lblHarvestAccountId.Name = "lblHarvestAccountId";
-            this.lblHarvestAccountId.Size = new System.Drawing.Size(113, 20);
+            this.lblHarvestAccountId.Size = new System.Drawing.Size(151, 25);
             this.lblHarvestAccountId.TabIndex = 24;
             this.lblHarvestAccountId.Text = "Harvest Acc Id";
             this.lblHarvestAccountId.Click += new System.EventHandler(this.label8_Click);
             // 
             // txtHarvestAccountId
             // 
-            this.txtHarvestAccountId.Location = new System.Drawing.Point(212, 458);
-            this.txtHarvestAccountId.Margin = new System.Windows.Forms.Padding(2);
+            this.txtHarvestAccountId.Location = new System.Drawing.Point(283, 572);
+            this.txtHarvestAccountId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHarvestAccountId.Name = "txtHarvestAccountId";
-            this.txtHarvestAccountId.Size = new System.Drawing.Size(191, 26);
+            this.txtHarvestAccountId.Size = new System.Drawing.Size(253, 31);
             this.txtHarvestAccountId.TabIndex = 23;
             this.txtHarvestAccountId.Text = "1840623";
             // 
             // chkIncludeTimeForEachEntry
             // 
             this.chkIncludeTimeForEachEntry.AutoSize = true;
-            this.chkIncludeTimeForEachEntry.Location = new System.Drawing.Point(212, 550);
-            this.chkIncludeTimeForEachEntry.Margin = new System.Windows.Forms.Padding(2);
+            this.chkIncludeTimeForEachEntry.Location = new System.Drawing.Point(283, 688);
+            this.chkIncludeTimeForEachEntry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkIncludeTimeForEachEntry.Name = "chkIncludeTimeForEachEntry";
-            this.chkIncludeTimeForEachEntry.Size = new System.Drawing.Size(22, 21);
+            this.chkIncludeTimeForEachEntry.Size = new System.Drawing.Size(28, 27);
             this.chkIncludeTimeForEachEntry.TabIndex = 26;
             this.chkIncludeTimeForEachEntry.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(37, 554);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(49, 692);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(137, 20);
+            this.label7.Size = new System.Drawing.Size(189, 25);
             this.label7.TabIndex = 27;
             this.label7.Text = "Time in each entry";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1498, 798);
+            this.ClientSize = new System.Drawing.Size(1997, 998);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.chkIncludeTimeForEachEntry);
             this.Controls.Add(this.lblHarvestAccountId);
@@ -368,9 +359,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numFirstRow);
             this.Controls.Add(this.btnGenerateText);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 38, 0);
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 51, 0);
             this.Text = "Work Time Logger";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numFirstRow)).EndInit();
