@@ -20,7 +20,7 @@ namespace WorkTimeLogger
         /// <param name="timeColumn"></param>
         /// <param name="textColumn"></param>
         /// <returns></returns>
-        public static List<TimeEntry> ReadExcelFile(string filePath, List<Tuple<int,int>> rowGroups, int dateColumn, int timeColumn, int textColumn)
+        public static List<TimeEntry> ReadExcelFile(string filePath, List<Tuple<int,int>> rowGroups, int dateColumn, int timeColumn, int textColumn, int projectColumn)
         {
             List<TimeEntry> result = new List<TimeEntry>();
 
@@ -39,6 +39,8 @@ namespace WorkTimeLogger
             int timeInMinutes = 0;
             double dateNumber;
             string text = String.Empty;
+            string projectName = String.Empty;
+
 
             foreach (Tuple<int, int> rowGroup in rowGroups)
             {
@@ -60,14 +62,25 @@ namespace WorkTimeLogger
                             date = flagDate;
                             //throw new Exception(String.Format("The Date value in cell [{0},{1}] is invalid", row, dateColumn));
                         }
+
                         if (worksheet.Cells[row, timeColumn].Value != null && DateTime.TryParse(worksheet.Cells[row, timeColumn].Value.ToString(), out timeAsDate))
                         {
                             timeInMinutes = timeAsDate.Hour * 60 + timeAsDate.Minute;
                         }
                         else
                         {
-                            throw new Exception(String.Format("The Time value in cell [{0},{1}] is invalid", row, timeColumn));
+                            throw new Exception(String.Format("The Time value in row {0} is invalid", row));
                         }
+
+                        if (worksheet.Cells[row, projectColumn].Value != null)
+                        {
+                            projectName = worksheet.Cells[row, projectColumn].Value.ToString();
+                        }
+                        else
+                        {
+                            projectName = String.Empty;
+                        }
+
                         if (worksheet.Cells[row, textColumn].Value != null)
                         {
                             text = worksheet.Cells[row, textColumn].Value.ToString();
@@ -84,12 +97,20 @@ namespace WorkTimeLogger
                         }
                         else
                         {
-                            result.Add(TimeEntry.CreateTimeEntry(row, date, timeInMinutes, text));
+                            if (String.IsNullOrEmpty(projectName) && timeInMinutes > 0)
+                            {
+                                // A valid entry with time must have a Project name
+                                throw new Exception(String.Format("The Project is not defined for row {0}", row));
+                            }
+                            else
+                            {
+                                result.Add(TimeEntry.CreateTimeEntry(row, date, timeInMinutes, text, projectName));
+                            }
                         }
                     }
                     catch (Exception ex)
                     {
-                        result.Add(new InvalidTimeEntry(row, date, timeInMinutes, text, ex.Message));
+                        result.Add(new InvalidTimeEntry(row, date, timeInMinutes, text, projectName, ex.Message));
                     }
                 }
             }

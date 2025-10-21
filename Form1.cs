@@ -15,37 +15,76 @@ namespace WorkTimeLogger
         public Form1()
         {
             InitializeComponent();
+            btnGetCSV.Enabled = false;
+            btnSendToHarvest.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            txtOutput.Text = String.Empty;
+            btnGetCSV.Enabled = false;
+            btnSendToHarvest.Enabled = false;
+            ProcessTimeEntries();
+        }
+
+
+        /// <summary>
+        /// Process the time entries to generate a compiled the text.
+        /// Optionally, send the time entries to Harvest.
+        /// </summary>
+        /// <param name="sendToHarvest"></param>
+        private void ProcessTimeEntries (bool sendToHarvest = false, bool getCSVforJA = false)
         {
             try
             {
                 List<Tuple<int, int>> rowGroups = new List<Tuple<int, int>>();
 
                 rowGroups.Add(new Tuple<int, int>(Convert.ToInt32(numFirstRow.Value), Convert.ToInt32(numLastRow.Value)));
-                List<TimeEntry> entries = ExcelHelper.ReadExcelFile(txtFileName.Text, rowGroups,
-                    Convert.ToInt32(txtDateColumn.Text), Convert.ToInt32(txtTimeColumn.Text),
-                    Convert.ToInt32(txtTextColumn.Text));
+                List<TimeEntry> entries = ExcelHelper.ReadExcelFile(
+                    filePath: txtFileName.Text,
+                    rowGroups: rowGroups,
+                    dateColumn: Convert.ToInt32(txtDateColumn.Text),
+                    timeColumn: Convert.ToInt32(txtTimeColumn.Text),
+                    textColumn: Convert.ToInt32(txtTextColumn.Text),
+                    projectColumn: Convert.ToInt32(txtProjectColumn.Text));
 
-                // Sprints when Marcos was the support guy:
-                //   Sprint 33(3 / 3 - 3 / 16)-- Rows 28 to 160
-                //   Sprint 35(3 / 31 - 4 / 13) – Rows 260 to 403
-                //   Sprint 37(4 / 28 - 5 / 11) – Rows 510 to 609
-                //rowGroups.Add(new Tuple<int, int>(28, 160));
-                //rowGroups.Add(new Tuple<int, int>(260, 403));
-                //rowGroups.Add(new Tuple<int, int>(510, 609));
-                //output = TextGenerator.GetTextGroupedByJiraWithoutMeetingsAndDates(entries);
+                txtOutput.Text = TextGenerator.GetTextGroupedByDate(entries, chkIncludeTimeForEachEntry.Checked);
 
-                string output1 = TextGenerator.GetTextGroupedByDate(entries);
-                //string output2 = TextGenerator.GetTextGroupedByJira(entries);
-                string output3 = TextGenerator.GetCsvTextToImportUsingJiraAssistant(entries);
+                bool entriesHaveErrors = Tools.EntriesContainErrors(entries);
+                btnGetCSV.Enabled = !entriesHaveErrors;
+                btnSendToHarvest.Enabled = !entriesHaveErrors;
+
+                if (sendToHarvest)
+                {
+                    long accountId = -1;
+                    if (!long.TryParse(txtHarvestAccountId.Text, out accountId))
+                    {
+                        MessageBox.Show(
+                            text: "Harvest Account Id must be a long integer.", 
+                            caption: "Wrong Account Id", 
+                            buttons: MessageBoxButtons.OK, 
+                            icon: MessageBoxIcon.Error
+                            );
+                    }
+                    else
+                    {
+                        HarvestHelper.SendTimesToHarvest(this, accountId, txtHarvestAccessToken.Text, entries);
+                    }
+                }
+                if (getCSVforJA)
+                {
+                    string csvText = TextGenerator.GetCsvTextToImportUsingJiraAssistant(entries);
+                    System.Windows.Forms.Clipboard.SetText(csvText);
+                    MessageBox.Show("The CSV for the Jira Assistant Chrome Extension has been copied to the clipboard", "CSV copied to Clipboardr", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + "\r\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -80,7 +119,55 @@ namespace WorkTimeLogger
 
         }
 
+
         private void numLastRow_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDateColumn_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtDateColumn.Text.Length != 1)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                char columnLetter;
+                if (!Char.TryParse(txtDateColumn.Text, out columnLetter))
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    if (Char.ToLower(columnLetter) < 'a' || Char.ToLower(columnLetter) > 'z') {
+                        e.Cancel = true;
+                    }
+                }
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            ProcessTimeEntries(sendToHarvest: true);
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            ProcessTimeEntries(getCSVforJA: true);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }

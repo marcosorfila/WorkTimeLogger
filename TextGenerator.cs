@@ -13,8 +13,9 @@ namespace WorkTimeLogger
         /// Get the text with all the meetings grouped by date.
         /// </summary>
         /// <param name="entries"></param>
+        /// <param name="showTimeForEachEntry">If true, show the time for each Jira</param>
         /// <returns></returns>
-        public static string GetTextGroupedByDate(List<TimeEntry> entries)
+        public static string GetTextGroupedByDate(List<TimeEntry> entries, bool showTimeForEachEntry = true)
         {
             List<TimeEntry> consolidatedEntries = Tools.ConsolidateTimeEntries(entries);
 
@@ -25,12 +26,14 @@ namespace WorkTimeLogger
             // Group entries by Date
             Dictionary<DateTime, List<TimeEntry>> entriesByDate = Tools.GetTimeEntriesGroupedByDate(consolidatedEntries);
 
+            Dictionary<int, string> validationErrors = new Dictionary<int, string>();
+            int totalDurationInMinutes = 0;
+
             StringBuilder outputStr = new StringBuilder();
             foreach (DateTime day in entriesByDate.Keys.OrderBy(e => e.Ticks))
             {
-                int totalTime = 0;
+                int totalTimeForThisDay = 0;
                 StringBuilder validJirasStr = new StringBuilder();
-                StringBuilder invalidJirasStr = new StringBuilder();
                 foreach (TimeEntry t in entriesByDate[day])
                 {
                     if (t is JiraTimeEntry)
@@ -50,26 +53,42 @@ namespace WorkTimeLogger
                             jiraOutput.AppendLine(meetingsForEachDay[day].Description);
                         }
 
-                        validJirasStr.AppendLine(FormatMinutesToHours(duration));
+                        if (showTimeForEachEntry)
+                        {
+                            validJirasStr.AppendLine(FormatMinutesToHours(duration));
+                        }
                         validJirasStr.AppendLine(jiraOutput.ToString());
-                        totalTime += duration;
+                        totalTimeForThisDay += duration;
                     }
                     if (t is InvalidTimeEntry)
                     {
-                        if (invalidJirasStr.Length == 0)
-                        {
-                            invalidJirasStr.AppendLine("\r\nErrors:");
-                        }
                         InvalidTimeEntry invEntry = (InvalidTimeEntry)t;
-                        invalidJirasStr.AppendFormat("  Row {0}: {1}\r\n", invEntry.Row, invEntry.ValidationErrorMessage);
+                        validationErrors.Add(invEntry.Row, invEntry.ValidationErrorMessage);
                     }
                 }
-                outputStr.AppendFormat("{0}  -  {1}\r\n", day.ToString("MMMM d"), FormatMinutesToHours(totalTime));
-                outputStr.AppendFormat("{0}\r\n{1}\r\n\r\n", invalidJirasStr.ToString(), validJirasStr.ToString());
+                outputStr.AppendFormat("{0}  -  {1}\r\n", day.ToString("MMMM d"), FormatMinutesToHours(totalTimeForThisDay));
+                outputStr.AppendFormat("\r\n{0}\r\n\r\n", validJirasStr.ToString());
+                totalDurationInMinutes += totalTimeForThisDay;
             }
 
-            string output = outputStr.ToString();
-            return output;
+            // Build the errors string
+            StringBuilder invalidJirasStr = new StringBuilder();
+            if (validationErrors.Count > 0)
+            {
+                invalidJirasStr.AppendLine("\r\nErrors:");
+                foreach (int rowNumber in validationErrors.Keys.OrderBy(r => r))
+                {
+                    invalidJirasStr.AppendFormat("  Row {0}: {1}\r\n", rowNumber, validationErrors[rowNumber]);
+                }
+                invalidJirasStr.AppendFormat("\r\n\r\n");
+            }
+
+            string text = String.Format(
+                "Total time: {0} hrs\r\n\r\n\r\n{1}{2}",
+                FormatMinutesToHours(totalDurationInMinutes),
+                invalidJirasStr.ToString(), outputStr.ToString());
+
+            return text;
         }
 
 
@@ -159,6 +178,13 @@ namespace WorkTimeLogger
 
 
             List<TimeEntry> consolidatedEntries = Tools.ConsolidateTimeEntries(entries);
+
+            List<TimeEntry> invalidEntries = consolidatedEntries.Where(entry => entry is InvalidTimeEntry).ToList();
+            if (invalidEntries.Count > 0)
+            {
+                throw new Exception("Please review the invalid entries before requesting the CSV text.");
+            }
+
 
             // Identify the Jiras with the higher times in each Date. We will add the Meetings for that Date into that Jira.
             Dictionary<DateTime, JiraTimeEntry> longestJiraPerDay = Tools.GetLongestJiraPerDay(consolidatedEntries);

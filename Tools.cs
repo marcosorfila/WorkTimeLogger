@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace WorkTimeLogger
 {
@@ -177,11 +178,11 @@ namespace WorkTimeLogger
                     j.RemoveDuplicatesFromCommentLines();
                     if (j.CommentLines.Count == 0)
                     {
-                        result.Add(new InvalidTimeEntry(j.Row, j.Date, j.DurationInMinutes, j.Text, String.Format("Jira {0} has no comments", j.JiraId)));
+                        result.Add(new InvalidTimeEntry(j.Row, j.Date, j.DurationInMinutes, j.Text, j.Project, String.Format("Jira {0} has no comments", j.JiraId)));
                     }
                     else if (j.CommentLines.Count > 0 && j.DurationInMinutes <= 0)
                     {
-                        result.Add(new InvalidTimeEntry(j.Row, j.Date, j.DurationInMinutes, j.Text, String.Format("Jira {0} has comments, but no time", j.JiraId)));
+                        result.Add(new InvalidTimeEntry(j.Row, j.Date, j.DurationInMinutes, j.Text, j.Project, String.Format("Jira {0} has comments, but no time", j.JiraId)));
                     }
                     else
                     {
@@ -217,6 +218,29 @@ namespace WorkTimeLogger
             else
             {
                 result += mod - value % mod;
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Returns true if the list of entries contains validation errors.
+        /// </summary>
+        /// <param name="entries"></param>
+        /// <returns></returns>
+        static public bool EntriesContainErrors(List<TimeEntry> entries)
+        {
+            bool result = false;
+            if (entries != null && entries.Count > 0)
+            {
+                foreach (TimeEntry te in entries)
+                {
+                    if (te is InvalidTimeEntry)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
             }
             return result;
         }

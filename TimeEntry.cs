@@ -51,6 +51,16 @@ namespace WorkTimeLogger
         }
         protected string _Text;
 
+        /// <summary>
+        /// Project this time entry belongs to.
+        /// </summary>
+        public string Project
+        {
+            get { return _Project; }
+            set { _Project = value; }
+        }
+        protected string _Project;
+
 
         public TimeEntry()
         {
@@ -58,6 +68,7 @@ namespace WorkTimeLogger
             _Date = DateTime.Now.Date;
             _DurationInMinutes = 0;
             _Text = String.Empty;
+            _Project = String.Empty;
         }
 
 
@@ -68,24 +79,25 @@ namespace WorkTimeLogger
         /// <param name="date"></param>
         /// <param name="durationInMinutes"></param>
         /// <param name="text"></param>
+        /// <param name="project"></param>
         /// <returns></returns>
-        static public TimeEntry CreateTimeEntry(int row, DateTime date, int durationInMinutes, string text)
+        static public TimeEntry CreateTimeEntry(int row, DateTime date, int durationInMinutes, string text, string project)
         {
             TimeEntry entry;
 
             if (durationInMinutes <= 0)
             {
-                return new InvalidTimeEntry(row, date, durationInMinutes, text, "The duration must be greater than zero");
+                return new InvalidTimeEntry(row, date, durationInMinutes, text, project, "The duration must be greater than zero");
             }
 
             string cleanedUpText = (text ?? "").Replace("-", "").Replace(".", "").Trim();
             if (durationInMinutes > 0 && String.IsNullOrEmpty(cleanedUpText))
             {
-                entry = new InvalidTimeEntry(row, date, durationInMinutes, text, "The row has time, but no text");
+                entry = new InvalidTimeEntry(row, date, durationInMinutes, text, project, "The row has time, but no text");
             }
             else if (durationInMinutes == 0 && !String.IsNullOrEmpty(cleanedUpText))
             {
-                entry = new InvalidTimeEntry(row, date, durationInMinutes, text, "The row has text, but no time");
+                entry = new InvalidTimeEntry(row, date, durationInMinutes, text, project, "The row has text, but no time");
             }
             else
             {
@@ -98,7 +110,10 @@ namespace WorkTimeLogger
 
                 if (!String.IsNullOrEmpty(jiraId) && !String.IsNullOrEmpty(summary))
                 {
-                    JiraTimeEntry jiraEntry = new JiraTimeEntry(row, date, durationInMinutes, text, jiraId, summary);
+                    JiraTimeEntry jiraEntry = new JiraTimeEntry(
+                        row: row, date: date, durationInMinutes: durationInMinutes, text: text,
+                        project: project, jiraId: jiraId, summary: summary
+                        );
                     using (StringReader sr = new StringReader(text))
                     {
                         string line;
@@ -122,14 +137,18 @@ namespace WorkTimeLogger
                     string meetingDescription = match.Groups["meetingDescription"].Value.ToString();
                     if (!String.IsNullOrEmpty(meetingDescription))
                     {
-                        entry = new MeetingTimeEntry(row, date, durationInMinutes, text, meetingDescription);
+                        entry = new MeetingTimeEntry(
+                            row: row, date: date, durationInMinutes: durationInMinutes,
+                            text: text, project: project, description: meetingDescription
+                            );
                     }
                     else
                     {
-                        entry = new InvalidTimeEntry(row, date, durationInMinutes, text, "This is neither a Jira nor a Meeting");
+                        entry = new InvalidTimeEntry(row, date, durationInMinutes, text, project, "This is neither a Jira nor a Meeting");
                     }
                 }
             }
+            entry.Project = project;
 
             return entry;
         }
